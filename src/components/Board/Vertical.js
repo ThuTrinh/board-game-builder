@@ -1,26 +1,25 @@
-import React from "react";
+import React from 'react'
 
-import * as R from "ramda";
+import * as R from 'ramda'
 
-import Box from "../Box";
-import Flex from "../Flex";
-import TileSlot from "./TileSlot";
+import { Box, Flex } from 'bricks'
+import TileSlot from './TileSlot'
 
 const Vertical = ({ columns, size, indent, rows }) => {
-  const shouldIndent = indent === "even" ? x => x % 2 === 0 : x => x % 2 !== 0;
+  const shouldIndent = indent === 'even' ? x => x % 2 === 0 : x => x % 2 !== 0
 
   return (
     <Flex
       flexDirection="row"
       bg="green"
-      px={indent === "even" ? 0 : `${size / 4}px`}
+      px={indent === 'even' ? 0 : `${size / 4}px`}
     >
       {R.map(
         row => (
           <Flex
             key={row}
             flexDirection="column"
-            m={shouldIndent(row) ? 0 : `-${size / 4}px`}
+            mx={shouldIndent(row) ? 0 : `-${size / 4}px`}
             mt={shouldIndent(row) ? 0 : `${size / 2 + 1}px`}
           >
             {R.map(
@@ -34,8 +33,8 @@ const Vertical = ({ columns, size, indent, rows }) => {
         R.range(0, rows)
       )}
     </Flex>
-  );
-};
+  )
+}
 
-Vertical.displayName = "Vertical";
-export default Vertical;
+Vertical.displayName = 'Vertical'
+export default Vertical

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import Box from "../../Box";
+import { Box } from 'bricks'
 
 const Layout = ({ value, setValue, ...props }) => (
   <Box {...props}>
@@ -20,7 +20,7 @@ const Layout = ({ value, setValue, ...props }) => (
       </select>
     </Box>
   </Box>
-);
+)
 
-Layout.displayName = "Layout";
-export default Layout;
+Layout.displayName = 'Layout'
+export default Layout

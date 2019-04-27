@@ -1,19 +1,18 @@
-import React from "react";
+import React from 'react'
 
-import * as R from "ramda";
+import * as R from 'ramda'
 
-import Box from "../Box";
-import Flex from "../Flex";
-import TileSlot from "./TileSlot";
+import { Box, Flex } from 'bricks'
+import TileSlot from './TileSlot'
 
 const Horizontal = ({ rows, columns, size, indent }) => {
-  const shouldIndent = indent === "even" ? x => x % 2 === 0 : x => x % 2 !== 0;
+  const shouldIndent = indent === 'even' ? x => x % 2 === 0 : x => x % 2 !== 0
 
   return (
     <Flex
       flexDirection="column"
       bg="green"
-      py={indent === "even" ? 0 : `${size / 4}px`}
+      py={indent === 'even' ? 0 : `${size / 4}px`}
     >
       {R.map(
         row => (
@@ -34,8 +33,8 @@ const Horizontal = ({ rows, columns, size, indent }) => {
         R.range(0, rows)
       )}
     </Flex>
-  );
-};
+  )
+}
 
-Horizontal.displayName = "Horizontal";
-export default Horizontal;
+Horizontal.displayName = 'Horizontal'
+export default Horizontal

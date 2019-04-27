@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import Box from "../../Box";
+import { Box } from 'bricks'
 
 const Dimension = ({ rows, columns, setRows, setColumns, ...props }) => (
   <Box {...props}>
@@ -29,7 +29,7 @@ const Dimension = ({ rows, columns, setRows, setColumns, ...props }) => (
       />
     </Box>
   </Box>
-);
+)
 
-Dimension.displayName = "Dimension";
-export default Dimension;
+Dimension.displayName = 'Dimension'
+export default Dimension

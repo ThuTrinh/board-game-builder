@@ -1,40 +1,46 @@
-import React, { useReducer } from "react";
+import React, { useReducer } from 'react'
 
-import * as R from "ramda";
-import uuid from "uuid";
+import * as R from 'ramda'
+import uuid from 'uuid'
 
-import Box from "../Box";
-import Flex from "../Flex";
-import { HexTile } from "../Tiles";
+import { Box, Flex } from 'bricks'
+import { HexTile } from '../Tiles'
 
-const allowDrop = event => event.preventDefault();
+const allowDrop = event => event.preventDefault()
 
 const drop = R.curry((dispatch, event) => {
-  event.preventDefault();
-  var droppedData = event.dataTransfer.getData("data");
+  event.preventDefault()
+  var droppedData = event.dataTransfer.getData('data')
 
   if (!droppedData) {
-    return;
+    return
   }
 
-  dispatch(JSON.parse(droppedData));
-});
+  dispatch(JSON.parse(droppedData))
+})
 
 const reducer = (state, { payload, type }) => {
   switch (type) {
-    case "TILE/NEW":
+    case 'TILE/NEW':
       return {
         ...state,
         layers: [...state.layers, { ...payload, id: uuid() }]
-      };
+      }
     default: {
-      return state;
+      return state
     }
   }
-};
+}
 
-const BaseTile = ({ row, col, size }) => (
-  <HexTile width={size} height={size} m="1px" row={row} col={col}>
+const BaseTile = ({ row, col, size, vertical }) => (
+  <HexTile
+    width={size}
+    height={size}
+    m="1px"
+    row={row}
+    col={col}
+    vertical={vertical}
+  >
     <Flex
       justifyContent="center"
       alignItems="center"
@@ -46,9 +52,9 @@ const BaseTile = ({ row, col, size }) => (
       </Box>
     </Flex>
   </HexTile>
-);
+)
 
-const TerrainTile = ({ id, row, col, size, bg }) => (
+const TerrainTile = ({ id, row, col, size, bg, vertical }) => (
   <HexTile
     key={id}
     width={size}
@@ -62,11 +68,12 @@ const TerrainTile = ({ id, row, col, size, bg }) => (
     left={0}
     ml="1px"
     mt="1px"
+    vertical={vertical}
   />
-);
+)
 
-const TileSlot = ({ row, col, size, ...props }) => {
-  const [state, dispatch] = useReducer(reducer, { row, col, layers: [] });
+const TileSlot = ({ row, col, size, vertical, ...props }) => {
+  const [state, dispatch] = useReducer(reducer, { row, col, layers: [] })
 
   return (
     <Box
@@ -75,11 +82,16 @@ const TileSlot = ({ row, col, size, ...props }) => {
       onDragOver={allowDrop}
       {...props}
     >
-      <BaseTile size={size} row={state.row} col={state.col} />
+      <BaseTile
+        size={size}
+        row={state.row}
+        col={state.col}
+        vertical={vertical}
+      />
       {R.map(
         R.cond([
           [
-            R.propEq("type", "TILE"),
+            R.propEq('type', 'TILE'),
             ({ id, bg }) => (
               <TerrainTile
                 key={id}
@@ -87,6 +99,7 @@ const TileSlot = ({ row, col, size, ...props }) => {
                 row={state.row}
                 col={state.col}
                 bg={bg}
+                vertical={vertical}
               />
             )
           ],
@@ -96,10 +109,10 @@ const TileSlot = ({ row, col, size, ...props }) => {
         state.layers
       )}
     </Box>
-  );
-};
+  )
+}
 
-TileSlot.displayName = "TileSlot";
-export default TileSlot;
+TileSlot.displayName = 'TileSlot'
+export default TileSlot
 
 // https://www.inkling.com/blog/2013/10/html5s-drag-and-drop-problem/

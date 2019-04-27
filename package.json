@@ -2,30 +2,40 @@
   "name": "board-game-builder",
   "version": "1.0.0",
   "description": "Build a board game",
-  "keywords": [],
-  "main": "src/index.js",
+  "main": "index.js",
+  "alias": {
+    "bricks": "./src/bricks",
+    "hooks": "./src/hooks"
+  },
   "dependencies": {
-    "ramda": "0.26.1",
-    "react": "16.8.3",
-    "react-dom": "16.8.3",
-    "react-scripts": "2.1.8",
-    "styled-components": "4.2.0",
-    "styled-system": "4.1.0",
+    "ramda": "^0.26.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.2.0",
+    "styled-system": "^4.1.0",
     "uuid": "3.3.2"
   },
   "devDependencies": {
-    "typescript": "3.3.3"
+    "parcel-bundler": "^1.12.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "parcel src/index.html --no-autoinstall",
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf .cache dist",
+    "nuke": "rm -rf .cache node_modules dist",
+    "precommit": "lint-staged"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThuTrinh/board-game-builder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThuTrinh/board-game-builder/issues"
+  },
+  "homepage": "https://github.com/ThuTrinh/board-game-builder#readme"
 }

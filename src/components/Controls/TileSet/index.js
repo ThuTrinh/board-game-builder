@@ -1,32 +1,31 @@
-import React from "react";
+import React from 'react'
 
-import * as R from "ramda";
-import Box from "../../Box";
-import Flex from "../../Flex";
-import { HexTile } from "../../Tiles";
+import * as R from 'ramda'
+import { Box, Flex } from 'bricks'
+import { HexTile } from '../../Tiles'
 
 const getTile = R.cond([
   [
-    R.equals("MEMOIR_44"),
+    R.equals('MEMOIR_44'),
     R.always([
-      { type: "TILE", terrain: "GRASS", bg: "green" },
-      { type: "TILE", terrain: "SAND", bg: "yellow" },
-      { type: "TILE", terrain: "WATER", bg: "blue" }
+      { type: 'TILE', terrain: 'GRASS', bg: 'green' },
+      { type: 'TILE', terrain: 'SAND', bg: 'yellow' },
+      { type: 'TILE', terrain: 'WATER', bg: 'blue' }
     ])
   ],
 
   [R.T, R.always([])]
-]);
+])
 
 const dragTile = R.curry((tile, event) => {
   event.dataTransfer.setData(
-    "data",
+    'data',
     JSON.stringify({
-      type: "TILE/NEW",
+      type: 'TILE/NEW',
       payload: tile
     })
-  );
-});
+  )
+})
 
 const TileSet = ({ value, setValue, ...props }) => (
   <Box {...props}>
@@ -72,7 +71,7 @@ const TileSet = ({ value, setValue, ...props }) => (
       )}
     </Flex>
   </Box>
-);
+)
 
-TileSet.displayName = "TileSet";
-export default TileSet;
+TileSet.displayName = 'TileSet'
+export default TileSet

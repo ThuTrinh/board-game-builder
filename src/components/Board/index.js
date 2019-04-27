@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 
-import * as R from "ramda";
+import * as R from 'ramda'
 
-import Flex from "../Flex";
-import Horizontal from "./Horizontal";
-import Vertical from "./Vertical";
+import { Flex } from 'bricks'
+import Horizontal from './Horizontal'
+import Vertical from './Vertical'
 
-const Board = ({ rows, columns, size = 50, layout = "ODD_R" }) => {
+const Board = ({ rows, columns, size = 50, layout = 'ODD_R' }) => {
   return (
     <Flex justifyContent="center" alignItems="center" overflow="auto">
       {R.cond([
         [
-          R.equals("ODD_R"),
+          R.equals('ODD_R'),
           () => (
             <Horizontal
               rows={rows}
@@ -23,7 +23,7 @@ const Board = ({ rows, columns, size = 50, layout = "ODD_R" }) => {
         ],
 
         [
-          R.equals("EVEN_R"),
+          R.equals('EVEN_R'),
           () => (
             <Horizontal
               rows={rows}
@@ -35,22 +35,22 @@ const Board = ({ rows, columns, size = 50, layout = "ODD_R" }) => {
         ],
 
         [
-          R.equals("ODD_Q"),
+          R.equals('ODD_Q'),
           () => (
             <Vertical rows={columns} columns={rows} size={size} indent="odd" />
           )
         ],
 
         [
-          R.equals("EVEN_Q"),
+          R.equals('EVEN_Q'),
           () => (
             <Vertical rows={columns} columns={rows} size={size} indent="even" />
           )
         ]
       ])(layout)}
     </Flex>
-  );
-};
+  )
+}
 
-Board.displayName = "Board";
-export default Board;
+Board.displayName = 'Board'
+export default Board
